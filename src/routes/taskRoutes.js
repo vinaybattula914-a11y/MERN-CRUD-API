@@ -9,13 +9,20 @@ const {
   deleteTask,
 } = require("../controllers/taskController");
 
+const authMiddleware = require("../middleware/authMiddleware");
+
 const router = express.Router();
 
-router.route("/")
+// Protect all task routes
+router.use(authMiddleware);
+
+router
+  .route("/")
   .get(getAllTasks)
   .post(createTask);
 
-router.route("/:id")
+router
+  .route("/:id")
   .get(getTaskById)
   .put(updateTask)
   .patch(patchTask)

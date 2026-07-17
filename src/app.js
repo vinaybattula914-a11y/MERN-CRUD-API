@@ -6,6 +6,7 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 
 const taskRoutes = require("./routes/taskRoutes");
+const authRoutes = require("./routes/authRoutes"); // New
 const errorHandler = require("./middleware/errorHandler");
 const logger = require("./middleware/logger");
 
@@ -29,6 +30,7 @@ app.get("/", (req, res) => {
 });
 
 // API Routes
+app.use("/api/auth", authRoutes); // New Authentication Routes
 app.use("/api/tasks", taskRoutes);
 
 // 404 Route Handler
